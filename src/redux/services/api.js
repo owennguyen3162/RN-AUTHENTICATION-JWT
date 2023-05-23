@@ -32,17 +32,12 @@ instance.interceptors.response.use(
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
         const RefreshToken = await TokenService.getLocalRefreshToken();
-        console.log(RefreshToken);
         try {
           const rs = await instance.post("/auth/refresh", {
             refreshToken: RefreshToken,
           });
-
           const { accessToken } = rs.data;
-
-          // dispatch(refreshToken(accessToken));
           await TokenService.updateLocalAccessToken(accessToken);
-
           return instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
