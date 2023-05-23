@@ -2,16 +2,14 @@ import * as React from "react";
 import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./components/Screen/Login";
-import Register from "./components/Screen/Register";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
-import setup from "./src/redux/services/setupInterceptors";
-import Home from "./components/Screen/Home";
-import { navigationRef } from "./components/navigation/RootNavigation"
+import { navigationRef } from "./src/components/navigation/RootNavigation"
+import Login from "./src/components/Screen/Login";
+import Register from "./src/components/Screen/Register";
+import Home from "./src/components/Screen/Home";
 const Stack = createNativeStackNavigator();
 const App = () => {
-  setup(store);
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
