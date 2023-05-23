@@ -1,7 +1,7 @@
 import { LOGIN, REFRESH_TOKEN, REGISTER,GET_INFO } from "./types";
 
 import AuthService from "../services/auth.service";
-import { navigate } from "../../../components/navigation/RootNavigation";
+import { navigate } from "../../components/navigation/RootNavigation";
 
 export const register = (username, password) => async (dispatch) => {
   try {
