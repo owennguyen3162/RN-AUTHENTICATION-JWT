@@ -12,15 +12,16 @@ const Info = ({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
 
+  // console.log(data);
   return (
     <View style={Style.container}>
-      {data.isLoading ? (
+      {data.isLoading || data.data === null ? (
         <ActivityIndicator />
       ) : (
         <>
           <Text>{data.data.data.username}</Text>
           <Text>{data.data.data.password}</Text>
-          <Text>{data.data.refreshToken}</Text>
+          <Text>{data.data.data.refreshToken}</Text>
         </>
       )}
     </View>
