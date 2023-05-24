@@ -1,29 +1,20 @@
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAIL } from "../actions/types";
+import { LOGIN, LOGOUT } from "../actions/types";
 
 const initialState = {
-  data: null,
-  isLoading: false,
+  isSignedIn: false,
 };
 
 export default function (state = initialState, payload) {
   switch (payload.type) {
-    case FETCH_REQUEST:
+    case LOGIN:
       return {
         ...state,
-        data: payload.payload,
-        isLoading: payload.isLoading,
+        isSignedIn: payload.isSignedIn,
       };
-    case FETCH_SUCCESS:
+    case LOGOUT:
       return {
         ...state,
-        data: payload.payload,
-        isLoading: payload.isLoading,
-      };
-    case FETCH_FAIL:
-      return {
-        ...state,
-        data: payload.payload,
-        isLoading: payload.isLoading,
+        isSignedIn: payload.isSignedIn,
       };
     default:
       return state;
