@@ -1,20 +1,19 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../src/redux/actions/auth";
-const Login = ({ navigation }) => {
+import { useDispatch } from "react-redux";
+import {register} from '../../redux/actions/auth'
+const Register = ({ navigation }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const data = useSelector((data) => data.authReducer);
-  const dispatch = useDispatch();
-  const handleLogin = () => {
-    dispatch(login(username, password));
-  };
 
+  const dispatch = useDispatch();
+  const handleRegister = () => {
+    dispatch(register(username, password));
+  };
   return (
     <View style={Style.container}>
-      <Text>LOGIN</Text>
+      <Text>Register</Text>
       <TextInput
         style={Style.textInput}
         placeholder="username"
@@ -25,11 +24,11 @@ const Login = ({ navigation }) => {
         placeholder="password"
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="LOGIN" onPress={() => handleLogin()} />
+      <Button title="REGISTER" onPress={() => handleRegister()} />
       <View style={{ flexDirection: "row", marginTop: 20 }}>
-        <Text>You don't have an account ? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={{ color: "blue" }}>Register</Text>
+        <Text>You have an account ? </Text>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={{ color: "blue" }}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -54,4 +53,4 @@ const Style = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Register;

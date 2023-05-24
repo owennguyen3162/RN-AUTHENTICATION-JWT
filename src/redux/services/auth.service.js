@@ -23,15 +23,20 @@ const login = (username, password) => {
     });
 };
 
-const logout = () => {
-  TokenService.removeUser();
+const logout = async () => {
+  try {
+    await AsyncStorage.clear();
+  } catch (error) {
+    console.log("Remove asyncStorage Fail :::" + error);
+  }
 };
 
 const getCurrentUser = async () => {
   try {
     const value = await AsyncStorage.getItem("user");
     if (value !== null) {
-      return await JSON.parse(value);
+      const data = await JSON.parse(value);
+      return data;
     }
   } catch (e) {
     console.log("getCurrentUser error:::" + e);
@@ -49,6 +54,7 @@ const AuthService = {
   login,
   logout,
   getInfo,
+  getCurrentUser,
 };
 
 export default AuthService;
