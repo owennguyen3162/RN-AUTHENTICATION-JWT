@@ -14,12 +14,9 @@ const user = async () => {
   }
 };
 
-// const initialState = user
-//   ? { isLoggedIn: true, user }
-//   : { isLoggedIn: false, user: null };
-
 const initialState = {
   data: null,
+  isLoading: true,
 };
 
 export default function (state = initialState, payload) {
@@ -38,11 +35,11 @@ export default function (state = initialState, payload) {
         ...state,
         data: payload.payload,
       };
-      case GET_INFO:
-        return {
-          ...state,
-          data: payload.payload,
-        };
+    case GET_INFO:
+      return {
+        ...state,
+        data: payload.payload,
+      };
     default:
       return state;
   }

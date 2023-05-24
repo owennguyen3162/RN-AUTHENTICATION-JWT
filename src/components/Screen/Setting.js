@@ -1,12 +1,26 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
-const Setting = () => {
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import AuthService from "../../redux/services/auth.service";
+const Setting = ({ navigation }) => {
+  const handleLogout = () => {
+    AuthService.logout().then(() => {
+      navigation.replace("Login");
+    });
+  };
   return (
-    <View>
-      <Text>Setting</Text>
+    <View style={Style.container}>
+      <TouchableOpacity onPress={handleLogout}>
+        <Text style={{ fontWeight: "bold", fontSize: 20 }}>Logout</Text>
+      </TouchableOpacity>
     </View>
-  )
-}
-
-export default Setting
+  );
+};
+const Style = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+export default Setting;
