@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
-import authReducer from "./auth";
+import API from "./api";
+import isSignedIn from "./auth";
 
 const reducer = combineReducers({
-  authReducer: authReducer,
+  authReducer: API,
+  isSignedIn: isSignedIn,
 });
 
 export default (state, action) => reducer(state, action);
