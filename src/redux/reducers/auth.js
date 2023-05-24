@@ -1,44 +1,29 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { REFRESH_TOKEN, REGISTER, LOGIN, GET_INFO } from "../actions/types";
-
-const user = async () => {
-  try {
-    const value = await AsyncStorage.getItem("user");
-    if (value !== null) {
-      const user = await JSON.parse(value);
-      console.log("USER STROGE ::: " + user);
-      return user;
-    }
-  } catch (e) {
-    console.log("getLocalRefreshToken error:::" + e);
-  }
-};
+import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAIL } from "../actions/types";
 
 const initialState = {
   data: null,
-  isLoading: true,
+  isLoading: false,
 };
 
 export default function (state = initialState, payload) {
   switch (payload.type) {
-    case REFRESH_TOKEN:
+    case FETCH_REQUEST:
       return {
         ...state,
         data: payload.payload,
+        isLoading: payload.isLoading,
       };
-    case REGISTER:
-      return {
-        ...state,
-      };
-    case LOGIN:
+    case FETCH_SUCCESS:
       return {
         ...state,
         data: payload.payload,
+        isLoading: payload.isLoading,
       };
-    case GET_INFO:
+    case FETCH_FAIL:
       return {
         ...state,
         data: payload.payload,
+        isLoading: payload.isLoading,
       };
     default:
       return state;
