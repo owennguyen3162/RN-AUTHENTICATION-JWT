@@ -24,7 +24,6 @@ const App = () => {
   const getCurrent = async () => {
     try {
       const value = await TokenService.getUser();
-      setUser(value);
     } catch (error) {
       console.log(error);
     } finally {
