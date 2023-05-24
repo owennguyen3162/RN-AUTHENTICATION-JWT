@@ -67,8 +67,13 @@ const setUser = async (user) => {
   }
 };
 
-const removeUser = () => {
-  AsyncStorage.clear();
+const removeUser = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log("Logout Done");
+  } catch (error) {
+    console.log("Remove asyncStorage Fail :::" + error);
+  }
 };
 
 const TokenService = {
