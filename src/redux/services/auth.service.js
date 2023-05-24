@@ -44,9 +44,12 @@ const getCurrentUser = async () => {
 };
 
 const getInfo = () => {
-  return api.get("/users/profile").then((response) => {
-    return response;
-  });
+  return api
+    .get("/users/profile")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => err);
 };
 
 const AuthService = {
