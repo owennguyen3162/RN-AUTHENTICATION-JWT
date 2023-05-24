@@ -1,7 +1,12 @@
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAIL } from "./types";
+import {
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+  FETCH_FAIL,
+  LOGIN,
+  LOGOUT,
+} from "./types";
 
 import AuthService from "../services/auth.service";
-import { navigate } from "../../components/navigation/RootNavigation";
 
 const REQUEST = () => {
   return {
@@ -25,17 +30,29 @@ const FAIL = () => {
     type: FETCH_FAIL,
   };
 };
+const IS_LOGIN = () => {
+  return {
+    type: LOGIN,
+    isSignedIn: true,
+  };
+};
+const IS_LOGOUT = () => {
+  return {
+    type: LOGOUT,
+    isSignedIn: false,
+  };
+};
 export const register = (username, password) => async (dispatch) => {
   dispatch(REQUEST());
   try {
     const res = await AuthService.register(username, password);
     if (res.status === 201) {
-      dispatch(SUCCESS(res));
       alert("register successfully");
+      return dispatch(SUCCESS(res));
     }
   } catch (error) {
-    dispatch(FAIL());
     alert("register fail");
+    return dispatch(FAIL());
   }
 };
 
@@ -45,24 +62,32 @@ export const login = (username, password) => async (dispatch) => {
     const res = await AuthService.login(username, password);
     if (res) {
       dispatch(SUCCESS(res));
-      navigate("Home");
+      dispatch(IS_LOGIN());
     }
   } catch (error) {
-    dispatch(FAIL());
     alert("Login fail");
+    return dispatch(FAIL());
   }
 };
 
 export const getInfo = () => async (dispatch) => {
   dispatch(REQUEST());
   try {
+    console.log("DA GET INFOR");
     const res = await AuthService.getInfo();
-    console.log(res);
+    console.log("RES:::::: " + res);
     if (res.status === 200) {
-      dispatch(SUCCESS(res));
+      return dispatch(SUCCESS(res));
     }
   } catch (error) {
-    dispatch(FAIL());
     alert("get info fail");
+    return dispatch(FAIL());
   }
+};
+
+export const logout = () => async (dispatch) => {
+  dispatch(REQUEST());
+  AuthService.logout()
+    .then(() => dispatch(IS_LOGOUT()))
+    .catch((error) => console.log("log out error " + error));
 };
