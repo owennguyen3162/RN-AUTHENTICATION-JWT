@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfo } from "../../redux/actions/auth";
@@ -14,10 +14,15 @@ const Info = ({ navigation }) => {
 
   return (
     <View style={Style.container}>
-      <Text>{data.data.data.username}</Text>
-      <Text>{data.data.data.password}</Text>
-      <Text>{data.data.accessToken}</Text>
-      <Text>{data.data.refreshToken}</Text>
+      {data.isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <>
+          <Text>{data.data.data.username}</Text>
+          <Text>{data.data.data.password}</Text>
+          <Text>{data.data.refreshToken}</Text>
+        </>
+      )}
     </View>
   );
 };
