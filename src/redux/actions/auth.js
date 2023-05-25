@@ -88,6 +88,9 @@ export const getInfo = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch(REQUEST());
   AuthService.logout()
-    .then(() => dispatch(IS_LOGOUT()))
+    .then((res) => {
+      console.log(res);
+      dispatch(IS_LOGOUT())
+    })
     .catch((error) => console.log("log out error " + error));
 };
