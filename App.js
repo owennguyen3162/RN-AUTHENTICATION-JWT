@@ -9,6 +9,7 @@ import Login from "./src/components/Screen/Login";
 import Register from "./src/components/Screen/Register";
 import Home from "./src/components/Screen/Home";
 import TokenService from "./src/redux/services/token.service";
+import Detail from "./src/components/Screen/Detail";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
   );
 };
 
-const MainNavigator = ({ navigation }) => {
+const MainNavigator = () => {
   const settingOptions = {
     headerShown: false,
   };
@@ -35,7 +36,10 @@ const MainNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={settingOptions}>
       {data.isSignedIn || User !== undefined ? (
-        <Stack.Screen component={Home} name="Home" />
+        <>
+          <Stack.Screen component={Home} name="Home" />
+          <Stack.Screen component={Detail} name="Detail" />
+        </>
       ) : (
         <>
           <Stack.Screen component={Login} name="Login" />
@@ -45,13 +49,4 @@ const MainNavigator = ({ navigation }) => {
     </Stack.Navigator>
   );
 };
-
-// const AuthNavigator = () => {
-//   return (
-//     <>
-//       <Stack.Screen component={Login} name="Login" />
-//       <Stack.Screen component={Register} name="Register" />
-//     </>
-//   );
-// };
 export default App;
