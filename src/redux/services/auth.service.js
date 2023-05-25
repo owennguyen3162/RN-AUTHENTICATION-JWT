@@ -26,6 +26,7 @@ const login = (username, password) => {
 const logout = async () => {
   try {
     await AsyncStorage.clear();
+    console.log("Clear Current user Done !!!");
   } catch (error) {
     console.log("Remove asyncStorage Fail :::" + error);
   }
