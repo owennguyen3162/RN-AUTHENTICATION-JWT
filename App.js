@@ -27,7 +27,6 @@ const MainNavigator = () => {
   const dispatch = useDispatch();
 
   const data = useSelector((value) => value.isSignedIn);
-  const [User, setUser] = React.useState({});
 
   React.useEffect(() => {
     TokenService.getUser()
