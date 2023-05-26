@@ -5,7 +5,6 @@ const getLocalRefreshToken = async () => {
     const value = await AsyncStorage.getItem("user");
     if (value !== null) {
       const user = await JSON.parse(value);
-      // console.log("getLocalRefreshToken::: " + user.refreshToken);
       return user.refreshToken;
     }
   } catch (e) {
@@ -30,7 +29,6 @@ const updateLocalAccessToken = async (token) => {
     const value = await AsyncStorage.getItem("user");
     if (value !== null) {
       const user = await JSON.parse(value);
-      // console.log("updateLocalAccessToken::: " + token);
       user.accessToken = token;
       try {
         const jsonValue = JSON.stringify(user);
