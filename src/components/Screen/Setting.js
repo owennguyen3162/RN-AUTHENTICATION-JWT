@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import AuthService from "../../redux/services/auth.service";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/auth";
 const Setting = () => {
