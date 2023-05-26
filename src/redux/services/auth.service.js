@@ -26,6 +26,7 @@ const login = (username, password) => {
 const logout = async () => {
   try {
     await AsyncStorage.clear();
+    console.log("Clear Current user Done !!!");
   } catch (error) {
     console.log("Remove asyncStorage Fail :::" + error);
   }
@@ -44,9 +45,12 @@ const getCurrentUser = async () => {
 };
 
 const getInfo = () => {
-  return api.get("/users/profile").then((response) => {
-    return response;
-  });
+  return api
+    .get("/users/profile")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => err);
 };
 
 const AuthService = {

@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import AuthService from "../../redux/services/auth.service";
-const Setting = ({ navigation }) => {
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/auth";
+const Setting = () => {
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    AuthService.logout().then(() => {
-      navigation.replace("Login");
-    });
+    dispatch(logout());
   };
   return (
     <View style={Style.container}>

@@ -1,5 +1,6 @@
-export const REFRESH_TOKEN = "REFRESH_TOKEN";
-export const REGISTER = "REGISTER";
+export const FETCH_REQUEST = "FETCH_REQUEST";
+export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_FAIL = "FETCH_FAIL";
 export const LOGIN = "LOGIN";
-export const GET_INFO = "GET_INFO";
+export const LOGOUT = "LOGOUT";
 
